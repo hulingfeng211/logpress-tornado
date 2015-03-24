@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-#coding=utf8
+# coding=utf8
 try:
     import psyco
+
     psyco.full()
-except:pass
+except:
+    pass
 import types
 import urllib
 import locale
@@ -11,8 +13,10 @@ import datetime
 import codecs
 from decimal import Decimal
 
+
 class Promise(object):
     pass
+
 
 class TornadomainUnicodeDecodeError(UnicodeDecodeError):
     def __init__(self, obj, *args):
@@ -22,7 +26,8 @@ class TornadomainUnicodeDecodeError(UnicodeDecodeError):
     def __str__(self):
         original = UnicodeDecodeError.__str__(self)
         return '%s. You passed in %r (%s)' % (original, self.obj,
-                type(self.obj))
+                                              type(self.obj))
+
 
 class StrAndUnicode(object):
     """
@@ -30,8 +35,10 @@ class StrAndUnicode(object):
 
     Useful as a mix-in.
     """
+
     def __str__(self):
         return self.__unicode__().encode('utf-8')
+
 
 def smart_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
     """
@@ -45,6 +52,7 @@ def smart_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
         return s
     return force_unicode(s, encoding, strings_only, errors)
 
+
 def is_protected_type(obj):
     """Determine if the object instance is of a protected type.
 
@@ -57,6 +65,7 @@ def is_protected_type(obj):
         datetime.datetime, datetime.date, datetime.time,
         float, Decimal)
     )
+
 
 def force_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
     """
@@ -73,7 +82,7 @@ def force_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
     if strings_only and is_protected_type(s):
         return s
     try:
-        if not isinstance(s, basestring,):
+        if not isinstance(s, basestring, ):
             if hasattr(s, '__unicode__'):
                 s = unicode(s)
             else:
@@ -89,7 +98,7 @@ def force_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
                     # approximation to what the Exception's standard str()
                     # output should be.
                     s = ' '.join([force_unicode(arg, encoding, strings_only,
-                            errors) for arg in s])
+                                                errors) for arg in s])
         elif not isinstance(s, unicode):
             # Note: We use .decode() here, instead of unicode(s, encoding,
             # errors), so that if s is a SafeString, it ends up being a
@@ -105,8 +114,9 @@ def force_unicode(s, encoding='utf-8', strings_only=False, errors='strict'):
             # further exception by individually forcing the exception args
             # to unicode.
             s = ' '.join([force_unicode(arg, encoding, strings_only,
-                    errors) for arg in s])
+                                        errors) for arg in s])
     return s
+
 
 def smart_str(s, encoding='utf-8', strings_only=False, errors='strict'):
     """
@@ -127,7 +137,7 @@ def smart_str(s, encoding='utf-8', strings_only=False, errors='strict'):
                 # know how to print itself properly. We shouldn't raise a
                 # further exception.
                 return ' '.join([smart_str(arg, encoding, strings_only,
-                        errors) for arg in s])
+                                           errors) for arg in s])
             return unicode(s).encode(encoding, errors)
     elif isinstance(s, unicode):
         return s.encode(encoding, errors)
@@ -135,6 +145,7 @@ def smart_str(s, encoding='utf-8', strings_only=False, errors='strict'):
         return s.decode('utf-8', errors).encode(encoding, errors)
     else:
         return s
+
 
 def iri_to_uri(iri):
     """
@@ -162,6 +173,7 @@ def iri_to_uri(iri):
     if iri is None:
         return iri
     return urllib.quote(smart_str(iri), safe="/#%[]=:;$&()+,!?*@'~")
+
 
 def filepath_to_uri(path):
     """Convert an file system path to a URI portion that is suitable for

@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <rss version='2.0'>
-  <channel>
-  <title><![CDATA[{{settings.site_name}}]]></title>
-  <description><![CDATA[{{settings.site_desc}}]]></description>
-  <link>{{settings.domain}}</link>
-  <language>zh-cn</language>
-  <docs>{{settings.site_desc}}</docs>
-  <sy:updatePeriod>hourly</sy:updatePeriod>
-  <sy:updateFrequency>1</sy:updateFrequency>
-  <generator>Rss Powered By {{settings.site_name}}</generator>
-  {% for post in posts%}
-  <item>
-    <title><![CDATA[{{post.title}}]]></title>
-    <link>{{post.absolute_url}}</link>
-    <comments>{{post.absolute_url}}#comments</comments>
-    <pubDate>{{post.created|datetimeformat}}</pubDate>
-    <category><![CDATA[{{post.category.name}}]]></category>
-    <description><![CDATA[{{post.content|markdown}}]]></description>
-    <wfw:commentRss>{{post.comment_feed}}</wfw:commentRss>
-    <slash:comments>{{post.comments.count()}}</slash:comments>
-  </item>
-  {% endfor %}
-  </channel>
+    <channel>
+        <title><![CDATA[{{ settings.site_name }}]]></title>
+        <description><![CDATA[{{ settings.site_desc }}]]></description>
+        <link>{{ settings.domain }}</link>
+        <language>zh-cn</language>
+        <docs>{{ settings.site_desc }}</docs>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>Rss Powered By {{ settings.site_name }}</generator>
+        {% for post in posts %}
+            <item>
+                <title><![CDATA[{{ post.title }}]]></title>
+                <link>{{ post.absolute_url }}</link>
+                <comments>{{ post.absolute_url }}#comments</comments>
+                <pubDate>{{ post.created|datetimeformat }}</pubDate>
+                <category><![CDATA[{{ post.category.name }}]]></category>
+                <description><![CDATA[{{ post.content|markdown }}]]></description>
+                <wfw:commentRss>{{ post.comment_feed }}</wfw:commentRss>
+                <slash:comments>{{ post.comments.count() }}</slash:comments>
+            </item>
+        {% endfor %}
+    </channel>
 </rss>

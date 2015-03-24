@@ -149,7 +149,7 @@ class Link(db.Model):
         db_table = 'links'
 
 
-from playhouse.signals import  post_save
+from playhouse.signals import post_save
 from lib.mail.message import TemplateEmailMessage
 
 

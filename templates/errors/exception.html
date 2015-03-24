@@ -5,72 +5,76 @@
     <meta charset="UTF-8">
     <title>HTTP Status {{ status_code }}</title>
     <style type="text/css" media="screen">
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        font-family: Helvetica;
-        font-size: 10pt;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-    h1 {
-        padding: 20px;
-        color: #fff;
-        background: #133F52;
-    }
+        body {
+            font-family: Helvetica;
+            font-size: 10pt;
+        }
 
-    h2 {
-        background: #ffdd6f;
-        margin: 0;
-        margin-bottom: 1em;
-        padding: 5px;
-    }
+        h1 {
+            padding: 20px;
+            color: #fff;
+            background: #133F52;
+        }
 
-    h3 {
-        border-bottom: 1px solid #CCC;
-        margin: 0.5em 0;
-        padding-bottom: 0.5em;
-    }
+        h2 {
+            background: #ffdd6f;
+            margin: 0;
+            margin-bottom: 1em;
+            padding: 5px;
+        }
 
-    hr {
-        background: #CCC;
-        border: none;
-        height: 1px;
-        margin: 0.25em 0;
-    }
+        h3 {
+            border-bottom: 1px solid #CCC;
+            margin: 0.5em 0;
+            padding-bottom: 0.5em;
+        }
 
-    #container {
-        padding: 20px;    
-    }
+        hr {
+            background: #CCC;
+            border: none;
+            height: 1px;
+            margin: 0.25em 0;
+        }
 
-    .traceback-frame-header td {
-        background: #EEFFFF;
-        padding: 5px;
-    }
+        #container {
+            padding: 20px;
+        }
 
-    .traceback-frame-header h4 {
-        cursor: pointer;
-        margin: 0;
-    }
+        .traceback-frame-header td {
+            background: #EEFFFF;
+            padding: 5px;
+        }
 
-    .traceback-frame.first .traceback-frame-header td {
-        background: #ac9;
-    }
+        .traceback-frame-header h4 {
+            cursor: pointer;
+            margin: 0;
+        }
 
-    table td {
-        padding: 5px 10px;
-    }
-    
-    table td.key {
-        width: 15%;
-        background: #eee;
-    }
-    table td.value.alt {
-        background: #EFEFEF;
-    }
+        .traceback-frame.first .traceback-frame-header td {
+            background: #ac9;
+        }
 
-    .hll{background: #ac9;}
+        table td {
+            padding: 5px 10px;
+        }
+
+        table td.key {
+            width: 15%;
+            background: #eee;
+        }
+
+        table td.value.alt {
+            background: #EFEFEF;
+        }
+
+        .hll {
+            background: #ac9;
+        }
 
     </style>
 
@@ -89,7 +93,8 @@
         <table class="traceback-frame first">
             <tr class="traceback-frame-header">
                 <td width="100%" nowrap>
-                    <h4>on line <span class="line-no">{{ line }}</span> of <span class="method">{{ method }}</span> in {{ os.path.basename(filepath) }}</h4>
+                    <h4>on line <span class="line-no">{{ line }}</span> of <span class="method">{{ method }}</span>
+                        in {{ os.path.basename(filepath) }}</h4>
                 </td>
                 <td nowrap>File: <strong>{{ filepath }}</strong></td>
             </tr>
@@ -106,12 +111,14 @@
         </table>
 
         <h3>Full Traceback</h3>
+
         <div id="full-traceback">
             {% for filepath, line, method, code in traceback_list %}
                 <table class="traceback-frame">
                     <tr class="traceback-frame-header">
                         <td width="100%" nowrap>
-                            <h4>on line <span class="line-no">{{ line }}</span> of <span class="method">{{ method }}</span> in {{ os.path.basename(filepath) }}</h4>
+                            <h4>on line <span class="line-no">{{ line }}</span> of <span
+                                    class="method">{{ method }}</span> in {{ os.path.basename(filepath) }}</h4>
                         </td>
                         <td nowrap>File: <strong>{{ filepath }}</strong></td>
                     </tr>
@@ -126,11 +133,12 @@
                         </td>
                     </tr>
                 </table>
-                <br />
+                <br/>
             {% endfor %}
         </div>
-        
+
         <h3>Request Headers</h3>
+
         <div>
             <table width="100%">
                 {% for hk, hv in handler.request.headers.iteritems() %}
@@ -141,8 +149,9 @@
                 {% endfor %}
             </table>
         </div>
-        
+
         <h3>Response Headers</h3>
+
         <div>
             <table width="100%">
                 {% for hk, hv in handler._headers.iteritems() %}
@@ -159,7 +168,7 @@
 <div id="footer">
     Tornado
 </div>
-    
-    
+
+
 </body>
 </html>

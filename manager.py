@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # coding=utf8
-try:
-    import psyco
 
-    psyco.full()
-except:
-    pass
 import sys
 
 import tornado
@@ -21,6 +16,8 @@ from core import redis_server
 
 
 define("cmd", default='runserver', metavar="runserver|createuser")
+# define("cmd", default='runserver', metavar="runserver|createuser")
+#define("cmd", default='syncdb', metavar="runserver|createuser")
 define("port", default=9000, type=int)
 define("autoreload", default=False, type=bool)
 
